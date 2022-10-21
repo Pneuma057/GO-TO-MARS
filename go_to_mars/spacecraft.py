@@ -34,6 +34,8 @@ class Spacecraft(pygame.sprite.Sprite):
         if self.rect.centery < 50:
             self.rect.centery = 50
 
+        
+
             #aumentar la velocidad con una tecla, aumentar el scrool y añadir un fuego 
 
         def shoot(self):

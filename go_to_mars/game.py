@@ -1,15 +1,25 @@
+import pygame
 
-from screens import time,Menu,Level_1,pygame
+from screens import Menu,Moon
 from main import pygame,screen,colors,fps
 from asteroids import Asteroid_big,Asteroid_mid
 from spacecraft import Spacecraft
 
+
+pygame.init()
+
 #screen setup
+
+screen = (1200,600)#0,1
+colors = {"white" :(255,255,255),"black":(0,0,0)}#0,1
+fps = 60
+
 screen = pygame.display.set_mode((screen[0],screen[1]))
 clock = pygame.time.Clock()
 time = pygame.time.get_ticks()
 scroll = 0
 font = pygame.font.SysFont("Arial",30)
+
 
 
 #sprites setup
