@@ -1,7 +1,7 @@
-from go_to_mars import pygame
+from main import pygame
 from spacecraft import Spacecraft
 from asteroids import Asteroid_big,Asteroid_mid
-from launch import height,width,time,screen,font
+
 
 
 class Menu():
@@ -12,5 +12,7 @@ class Menu():
         pygame.display.set_caption("START")
         self.background_image = pygame.image.load("planets/space.png")
         self.font = pygame.font.Font("fonts/space_age.ttf",50)
-        
-       
+
+    def Level_1(self,screen,spacecraft,asteroid_big,asteroid_mid):
+        pass 
+    

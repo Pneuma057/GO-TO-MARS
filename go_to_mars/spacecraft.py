@@ -1,18 +1,18 @@
 
-from go_to_mars import pygame
+from main import pygame,colors,screen
 
-width = 1400
-height = 800
-black = (0,0,0)
+class Spacecraft(pygame.sprite.Sprite):
 
-class Spacecraft(pygame.sprite.Sprite,):
-    def __init__(self,black, width,height):
+    screen_size = screen
+    all_colors = colors
+
+    def __init__(self,colors,screen):
         super().__init__()
         self.image = pygame.image.load("spacecraft/nave_3.png").convert()
-        self.image.set_colorkey(black)
+        self.image.set_colorkey(colors[1])
         self.rect = self.image.get_rect()
         self.rect.centerx = 100
-        self.rect.centery = height // 2
+        self.rect.centery = screen[1] // 2
         self.speed_y = 0
 
     def update(self):

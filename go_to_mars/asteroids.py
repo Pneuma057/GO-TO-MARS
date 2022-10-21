@@ -1,4 +1,4 @@
-from go_to_mars import pygame,random
+from main import pygame,random,screen,colors
 width = 1400
 height = 800
 black = (0,0,0)
