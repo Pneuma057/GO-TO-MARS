@@ -1,18 +1,16 @@
 
-from main import pygame,colors,screen
+import pygame
 
 class Spacecraft(pygame.sprite.Sprite):
 
-    screen_size = screen
-    all_colors = colors
 
-    def __init__(self,colors,screen):
+    def __init__(self,colors, screen_size):
         super().__init__()
         self.image = pygame.image.load("spacecraft/nave_3.png").convert()
         self.image.set_colorkey(colors[1])
         self.rect = self.image.get_rect()
         self.rect.centerx = 100
-        self.rect.centery = screen[1] // 2
+        self.rect.centery = screen_size[1] // 2
         self.speed_y = 0
 
     def update(self):

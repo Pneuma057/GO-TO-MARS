@@ -1,9 +1,11 @@
-from main import pygame,random,screen,colors
+import pygame, random
+
 width = 1400
 height = 800
 black = (0,0,0)
+
 class Asteroid_big(pygame.sprite.Sprite):
-    def __init__(self,width,height,black):
+    def __init__(self,black):
         super().__init__()
         self.image = pygame.image.load("asteroids/big_1.png")
         self.image.set_colorkey(black)
@@ -27,7 +29,7 @@ class Asteroid_big(pygame.sprite.Sprite):
             #empezar a visualizar despues de 5 segundos
 
 class Asteroid_mid(pygame.sprite.Sprite):
-    def __init__(self,width,height,black):
+    def __init__(self, black):
         super().__init__()
         self.image = pygame.image.load("asteroids/mid.png")
         self.image.set_colorkey(black)
