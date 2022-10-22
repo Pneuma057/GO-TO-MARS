@@ -21,14 +21,11 @@ class Menu():
         while True:
             for evento in pygame.event.get():
                 if evento.type == pygame.QUIT:
-                    #TODO: Uncomment sys.exit() and remove "return True"
-                    #sys.exit()
-                    return
+                    sys.exit()
 
-                #TODO: Make this work
-                keystate = pygame.key.get_pressed()
-                if keystate[pygame.K_RETURN]:
-                    return
+                if evento.type == pygame.KEYDOWN:
+                    if evento.key == pygame.K_RETURN:
+                        return
 
             self.screen.blit(self.background, (0, 0))
             MAGENTA = (255, 0, 255)
@@ -36,7 +33,7 @@ class Menu():
             self.screen.blit(menu, (self.screen.get_width() // 2, self.screen.get_height() - 200))
             pygame.display.flip()
 
-#TODO: Poner iniciales etc
+
 class GameOver():
     #def __init__(self, screen, spacecraft, font):
     def __init__(self, screen, clock, score):
@@ -69,20 +66,12 @@ class GameOver():
                 if status == 0:
                     if evento.type == pygame.KEYDOWN:
                         if evento.key == pygame.K_RETURN:
-                            print(username)
-                            #text = ''
                             status = 1
                         elif evento.key == pygame.K_BACKSPACE:
                             username = username[:-1]
                         else:
                             username += evento.unicode
                             username = username[:3]
-
-                #TODO: Hacer que al pulsar ENTER continue a la siguiente pantalla
-                #keystate = pygame.key.get_pressed()
-                #if keystate[pygame.K_RETURN]:
-                #    self.database.close_connection()
-
 
             self.screen.blit(self.background, (0, 0))
             MAGENTA = (255, 0, 255)
@@ -92,6 +81,7 @@ class GameOver():
 
             # TODO: Ajustar posicion final score
             score_font = self.font.render(f"Final score: {self.score}", True, MAGENTA)
+
             self.screen.blit(score_font, (base_print_width, base_print_height + 100))
 
             if status == 2:

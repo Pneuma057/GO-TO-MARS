@@ -53,8 +53,7 @@ for i in range(50):
 
 
 
-#TODO: Uncomment the menu to run
-#Menu(screen, clock).run()
+Menu(screen, clock).run()
 
 #running 
 runned_loops = 0
