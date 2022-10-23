@@ -18,6 +18,7 @@ class Menu():
     
         #self.clock = clock
         self.spacecraft = spacecraft
+        
         pygame.display.set_caption("START")
         #self.font = pygame.font.Font("fonts/space_age.ttf", 50)
 
@@ -29,21 +30,118 @@ class Menu():
 
                 if evento.type == pygame.KEYDOWN:
                     if evento.key == pygame.K_RETURN:
+                        
                         return
             self.screen.blit(self.background, (0, 0))
 
             menu = self.font.render("Press Enter", True, black)
             self.screen.blit(menu, (200, 600))
+
             controllers_up = self.font2.render("For up press:",True,black)
             self.screen.blit(controllers_up, (20,20))
+
             controllers_down = self.font2.render("For down press:",True,black)
             self.screen.blit(controllers_down,(20,70))
-            key_w = self.font3.render("K",True,red)
+
+            key_w = self.font3.render("W",True,red)
             self.screen.blit(key_w,(350,15))
+
             key_s = self.font3.render("S",True,red)
             self.screen.blit(key_s,(335,60))
+            self.center_x = 430
+            self.center_y = 480
             pygame.display.flip()
+            """
+            self.image = pygame.image.load("spacecraft/nave_3.png").convert()
+            self.image.set_colorkey(black)
+            self.screen.blit(self.image,(480,430))
 
+            self.image_astro = pygame.image.load("astronauts/astronaut.png").convert()
+            self.image_astro.set_colorkey(black)
+            self.screen.blit(self.image_astro,(600,400))
+            
+           """
+
+
+            #########################################
+       
+class Stage():
+    #def __init__(self, screen, spacecraft, font):
+    def __init__(self, screen, clock,colors,fps,all_sprites,list_asteroid_big,list_asteroid_mid,player,health,score,background,title):
+        self.screen = screen
+        self.colors = colors
+        self.fps = fps
+        self.clock = clock
+        self.player = player
+        self.all_sprites = all_sprites
+        self.list_asteroid_big = list_asteroid_big
+        self.list_asteroid_mid = list_asteroid_mid
+        self.health = health 
+        self.score = score
+        self.scroll = 0
+        self.background = pygame.image.load(background)
+        self.font = pygame.font.Font("fonts/space.ttf", 30)
+        self.font2 = pygame.font.Font("fonts/pack.ttf",50)
+        pygame.display.set_caption(title)
+        #self.font = pygame.font.Font("fonts/space_age.ttf", 50)
+        
+    def run(self):
+        runned_loops = 0
+        gaming = True
+        while gaming:
+
+            time = pygame.time.get_ticks()
+
+            self.clock.tick(self.fps)
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    sys.exit()
+
+
+
+            #paint background
+            self.screen.blit(self.background,(self.scroll,0))
+
+            # Score rendering and computing
+            score_font = self.font.render(f"Score Points: {self.score}", True, self.colors['white'])
+            self.screen.blit(score_font, (600, 20))
+            if runned_loops % 10 == 0:
+                self.score += 100
+
+            """counting_time = font.render("Time: "+str(time), 0, (120,70,0))
+            screen.blit(counting_time, (800,20))
+            """
+
+            #counting_time.draw(screen)
+            #counting_time.update()
+            self.all_sprites.draw(self.screen)
+            self.list_asteroid_big.draw(self.screen)
+            self.list_asteroid_big.update()
+            self.list_asteroid_mid.draw(self.screen)
+            self.list_asteroid_mid.update()
+            collides = pygame.sprite.spritecollide(self.player,self.list_asteroid_big,True)
+
+
+        #collides
+
+            if collides:
+                
+                self.health -= 1
+                if self.health == 0:
+                    break
+            health_font = self.font2.render(f"LIVES: {self.health}", True, self.colors['white'])
+            self.screen.blit(health_font, (20, 20))
+
+            #scroll time
+            self.scroll -= 0.3
+            if abs (self.scroll) > self.screen.get_height():
+                self.scroll = 0
+            if time == 6000:
+                gaming = False
+            pygame.display.flip()
+            self.all_sprites.update()
+
+            runned_loops += 1
 
 class GameOver():
     #def __init__(self, screen, spacecraft, font):
@@ -68,8 +166,8 @@ class GameOver():
         username = ''
         base_print_width = 50
         base_print_height = 100
-
-        while True:
+        run = True
+        while run:
             for evento in pygame.event.get():
                 if evento.type == pygame.QUIT:
                     self.database.close_connection()
@@ -84,6 +182,10 @@ class GameOver():
                         else:
                             username += evento.unicode
                             username = username[:3]
+                elif status == 2 :
+                    if evento.type == pygame.KEYDOWN:
+                        if evento.key == pygame.K_RETURN:
+                            run = False
 
             self.screen.blit(self.background, (0, 0))
             MAGENTA = (255, 0, 255)
@@ -117,7 +219,3 @@ class GameOver():
                 self.screen.blit(score_font, (10,700))
 
             pygame.display.flip()
-
-class  Moon():
-    def __init__(self,screen,spacecraft,asteroid_big,Asteroid_mid):
-        pass 

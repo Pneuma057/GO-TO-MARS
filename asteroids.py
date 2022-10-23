@@ -4,6 +4,7 @@ width = 1400
 height = 800
 black = (0,0,0)
 
+
 class Asteroid_big(pygame.sprite.Sprite):
     def __init__(self,black):
         super().__init__()
@@ -14,6 +15,26 @@ class Asteroid_big(pygame.sprite.Sprite):
         self.rect.y = random.randint(70,730)
         self.speedy = random.randint(5,10)
         self.speedx = random.randint(-10,-1)
+        """
+        self.frames = []
+        self.index = 0
+        self.how_images = 0
+        self.animation_time = fps // 2
+        self.w
+        self.y
+
+        self.load.frames()
+
+    def Asteroid_big_sheet(self,h,y):
+        self.w
+        self.y
+
+        asteroid_big_sheet = pygame.image.load("asteroids/asteroid_big_list.png")
+        for row in range(5):
+            y = row = self.h
+            image = pygame.surface((self.w,self.h),pygame.SRCALPHA).pygame.Surface.convert_alpha()
+            image.blit(asteroid_big_sheet, )
+            """        
     asteroid_list = 10
 
     def update(self):
@@ -26,7 +47,10 @@ class Asteroid_big(pygame.sprite.Sprite):
         if self.rect.x < -100 or self.rect.y < 0 or self.rect.y > 600: #reset margins
             self.rect.y = random.randint(70,730)
             self.rect.x = random.randint(1400,10000)
-            #empezar a visualizar despues de 5 segundos
+    
+
+        
+        
 
 class Asteroid_mid(pygame.sprite.Sprite):
     def __init__(self, black):

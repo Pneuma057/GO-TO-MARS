@@ -35,7 +35,9 @@ class Spacecraft(pygame.sprite.Sprite):
         
 
             #aumentar la velocidad con una tecla, aumentar el scrool y añadir un fuego 
-
+        def explosion (self):
+            xplosion = pygame.image.load("spacecraft/crash.png").convert()
+            pass
         def shoot(self):
             pass #if pygame.keystate[pygame.K_SPACE]:
                 
