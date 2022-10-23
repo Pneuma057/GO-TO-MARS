@@ -128,16 +128,15 @@ class Stage():
                 
                 self.health -= 1
                 if self.health == 0:
-                    break
+                    return self.score, self.health
             health_font = self.font2.render(f"LIVES: {self.health}", True, self.colors['white'])
             self.screen.blit(health_font, (20, 20))
 
             #scroll time
             self.scroll -= 0.3
             if abs (self.scroll) > self.screen.get_height():
-                self.scroll = 0
-            if time == 6000:
-                gaming = False
+                return self.score, self.health
+
             pygame.display.flip()
             self.all_sprites.update()
 

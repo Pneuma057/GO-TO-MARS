@@ -34,21 +34,22 @@ if __name__ == "__main__":
     #sprites setup
     player = Spacecraft(colors['black'], screen_size,)
     
-    #TODO set health to whatever we want
-    health = 3
-    score = 0
-
     #inits
     pygame.init()
     pygame.mixer.init()
     pygame.display.set_caption("THE QUEST")
 
     while True:
+        score = 0
+        health = 3
         Menu(screen, clock).run()
         all_sprites,list_asteroid_big,list_asteroid_mid = get_new_sprites(player)
-        Stage(screen, clock,colors,fps,all_sprites,list_asteroid_big,list_asteroid_mid,player,health,score,"planets/moon.png","the moon").run()
-        all_sprites,list_asteroid_big,list_asteroid_mid = get_new_sprites(player)
-        Stage(screen, clock,colors,fps,all_sprites,list_asteroid_big,list_asteroid_mid,player,health,score,"planets/mars.png","to mars").run()
+        score,health = Stage(screen, clock,colors,fps,all_sprites,list_asteroid_big,list_asteroid_mid,player,health,score,"planets/moon.png","the moon").run()
+       
+        #  pass to next screen if you didn't die
+        if health :
+            all_sprites,list_asteroid_big,list_asteroid_mid = get_new_sprites(player)
+            score,health = Stage(screen, clock,colors,fps,all_sprites,list_asteroid_big,list_asteroid_mid,player,health,score,"planets/mars.png","to mars").run()
         GameOver(screen, clock, score).run()
 
 
