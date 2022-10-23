@@ -88,6 +88,7 @@ class Stage():
     def run(self):
         runned_loops = 0
         gaming = True
+        background_movement = True
         while gaming:
 
             time = pygame.time.get_ticks()
@@ -124,18 +125,28 @@ class Stage():
 
         #collides
 
-            if collides:
-                
+            if collides and background_movement:
                 self.health -= 1
                 if self.health == 0:
                     return self.score, self.health
             health_font = self.font2.render(f"LIVES: {self.health}", True, self.colors['white'])
             self.screen.blit(health_font, (20, 20))
 
+
             #scroll time
-            self.scroll -= 0.3
+            if background_movement:
+                self.scroll -= 0.3
+            else:
+                if self.player.rect.x >= self.screen.get_width():
+                    self.player.rect.x = 0
+                    self.player.rect.y = self.screen.get_height() // 2
+                    self.player.auto_movement = False
+                    return self.score, self.health
             if abs (self.scroll) > self.screen.get_height():
-                return self.score, self.health
+                background_movement = False
+                self.player.auto_movement = True
+                #self.scroll = self.screen.get_height()
+                #return self.score, self.health
 
             pygame.display.flip()
             self.all_sprites.update()

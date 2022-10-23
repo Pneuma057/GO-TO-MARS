@@ -12,8 +12,19 @@ class Spacecraft(pygame.sprite.Sprite):
         self.rect.centerx = 100
         self.rect.centery = screen_size[1] // 2
         self.speed_y = 0
+        self.auto_movement = False
 
     def update(self):
+        if self.auto_movement:
+            self.auto_move_spacecraft()
+        else:
+            self.control_spacecraft()
+
+    def auto_move_spacecraft(self):
+        self.speed_y = 0
+        self.rect.x += 10
+
+    def control_spacecraft(self):
         self.speed_y = 0
         keystate = pygame.key.get_pressed()
         
