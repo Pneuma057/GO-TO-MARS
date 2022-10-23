@@ -26,7 +26,7 @@ asteroid_big = Asteroid_big(colors['black'])
 asteroid_mid = Asteroid_mid(colors['black'])
 all_sprites = pygame.sprite.Group()
 all_sprites.add(player,asteroid_big,asteroid_mid)
-background = pygame.image.load("planets/level_1.png").convert()
+background = pygame.image.load("planets/moon.png").convert()
 list_asteroid_big = pygame.sprite.Group() 
 list_asteroid_mid = pygame.sprite.Group()
 #TODO set health to whatever we want
