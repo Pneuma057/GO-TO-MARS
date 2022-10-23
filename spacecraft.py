@@ -6,13 +6,20 @@ class Spacecraft(pygame.sprite.Sprite):
 
     def __init__(self,colors, screen_size):
         super().__init__()
-        self.image = pygame.image.load("spacecraft/nave_3.png").convert()
-        self.image.set_colorkey(colors[1])
-        self.rect = self.image.get_rect()
-        self.rect.centerx = 100
-        self.rect.centery = screen_size[1] // 2
+        self.set_spacecraft("spacecraft/nave_3.png", colors, 100, screen_size[1] // 2)
+        self.colors = colors
         self.speed_y = 0
         self.auto_movement = False
+        self.current_size = "full"
+
+    def set_spacecraft(self, image_file, colors, x, y):
+        self.image = pygame.image.load(image_file).convert()
+        self.image.set_colorkey(colors[1])
+        self.rect = self.image.get_rect()
+        self.rect.centerx = x
+        self.rect.centery = y
+        #self.rect.x = x
+        #self.rect.y = y
 
     def update(self):
         if self.auto_movement:
@@ -22,7 +29,18 @@ class Spacecraft(pygame.sprite.Sprite):
 
     def auto_move_spacecraft(self):
         self.speed_y = 0
-        self.rect.x += 10
+        self.rect.centerx += 10
+        # 100 (full size:nave_3)--- 700 (medium size) --- 1400 (small
+        if self.rect.x > 700 and self.current_size == "medium":
+            # small
+            self.set_spacecraft("spacecraft/nave_pull_1.png", self.colors, self.rect.centerx, self.rect.centery)
+            self.current_size = "small"
+        elif self.rect.x > 100 and self.current_size == "full":
+            # change to medium
+            self.set_spacecraft("spacecraft/nave_push_1.png", self.colors, self.rect.centerx, self.rect.centery)
+            self.current_size = "medium"
+
+
 
     def control_spacecraft(self):
         self.speed_y = 0

@@ -135,12 +135,15 @@ class Stage():
 
             #scroll time
             if background_movement:
-                self.scroll -= 0.3
+                self.scroll -= 2
             else:
+                #for restore spacecraft image and position to initial state
                 if self.player.rect.x >= self.screen.get_width():
-                    self.player.rect.x = 0
-                    self.player.rect.y = self.screen.get_height() // 2
+                    #self.player.rect.x = 0
+                    #self.player.rect.y = self.screen.get_height() // 2
+                    self.player.set_spacecraft("spacecraft/nave_3.png", self.player.colors, 100, self.screen.get_height() // 2)
                     self.player.auto_movement = False
+                    self.player.current_size = "full"
                     return self.score, self.health
             if abs (self.scroll) > self.screen.get_height():
                 background_movement = False
