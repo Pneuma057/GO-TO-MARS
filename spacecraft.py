@@ -18,8 +18,7 @@ class Spacecraft(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.centerx = x
         self.rect.centery = y
-        #self.rect.x = x
-        #self.rect.y = y
+     
 
     def update(self):
         if self.auto_movement:
@@ -30,7 +29,7 @@ class Spacecraft(pygame.sprite.Sprite):
     def auto_move_spacecraft(self):
         self.speed_y = 0
         self.rect.centerx += 5
-        # 100 (full size:nave_3)--- 700 (medium size) --- 1400 (small
+        
         if self.rect.x > 1100 and self.current_size == "medium":
             # small
             self.set_spacecraft("spacecraft/nave_32.png", self.colors, self.rect.centerx, self.rect.centery)
@@ -49,8 +48,7 @@ class Spacecraft(pygame.sprite.Sprite):
         
         if keystate[pygame.K_w]:
             self.speed_y = -5
-            #if keystate[pygame.K_w]>= 
-             # self.speed_y = -50
+        
         if keystate[pygame.K_s]:
            self.speed_y = 5
       
@@ -59,15 +57,14 @@ class Spacecraft(pygame.sprite.Sprite):
         #define game limits
         if self.rect.centery > 750:
             self.rect.centery = 750
+
         if self.rect.centery < 50:
             self.rect.centery = 50
 
         
 
-            #aumentar la velocidad con una tecla, aumentar el scrool y añadir un fuego 
-        def explosion (self):
-            xplosion = pygame.image.load("spacecraft/crash.png").convert()
-            pass
-        def shoot(self):
-            pass #if pygame.keystate[pygame.K_SPACE]:
+            
+        
+
+      
                 

@@ -8,6 +8,7 @@ black = (0,0,0)
 class Asteroid_big(pygame.sprite.Sprite):
     def __init__(self,black):
         super().__init__()
+        self.pics = {list : ["b1.png","b2.png","b3.png"]}
         self.image = pygame.image.load("asteroids/big_1.png")
         self.image.set_colorkey(black)
         self.rect = self.image.get_rect()
@@ -15,6 +16,21 @@ class Asteroid_big(pygame.sprite.Sprite):
         self.rect.y = random.randint(70,730)
         self.speedy = random.randint(5,10)
         self.speedx = random.randint(-10,-1)
+
+        self.pic_active = self.pics
+        self.pic_active = 0
+        self.change_pic = 10
+        self.fps_count = 0
+
+    def load_pic(self,pics):
+        self.pics = {}
+        for picture in self.pics:
+            A = pygame.image.load(f"asteroids/{picture}")
+            pics.append(A)
+
+        #TODO: asteroids rotate
+
+
         """
         self.frames = []
         self.index = 0
