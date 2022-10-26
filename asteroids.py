@@ -1,3 +1,4 @@
+from textwrap import indent
 import pygame, random
 
 width = 1400
@@ -8,8 +9,9 @@ black = (0,0,0)
 class Asteroid_big(pygame.sprite.Sprite):
     def __init__(self,black):
         super().__init__()
-        self.pics = {list : ["b1.png","b2.png","b3.png"]}
-        self.image = pygame.image.load("asteroids/big_1.png")
+        self.index=0
+        self.pics = ["asteroids/b1.png","asteroids/b2.png","asteroids/b3.png","asteroids/b4.png","asteroids/b5.png","asteroids/b6.png","asteroids/b7.png","asteroids/b8.png","asteroids/b9.png","asteroids/b10.png","asteroids/b11.png","asteroids/b20.png"]
+        self.image = pygame.image.load(self.pics[self.index])
         self.image.set_colorkey(black)
         self.rect = self.image.get_rect()
         self.rect.x = random.randint(4000,15000)
@@ -22,39 +24,17 @@ class Asteroid_big(pygame.sprite.Sprite):
         self.change_pic = 10
         self.fps_count = 0
 
-    def load_pic(self):
-        #self.pics = {}
-        for picture in self.pics:
-            self.image = pygame.image.load(f"asteroids/{picture}")
-            #self.pics.append(self.image)
 
-        #TODO: asteroids rotate
-
-
-        """
-        self.frames = []
-        self.index = 0
-        self.how_images = 0
-        self.animation_time = fps // 2
-        self.w
-        self.y
-
-        self.load.frames()
-
-    def Asteroid_big_sheet(self,h,y):
-        self.w
-        self.y
-
-        asteroid_big_sheet = pygame.image.load("asteroids/asteroid_big_list.png")
-        for row in range(5):
-            y = row = self.h
-            image = pygame.surface((self.w,self.h),pygame.SRCALPHA).pygame.Surface.convert_alpha()
-            image.blit(asteroid_big_sheet, )
-            """        
     asteroid_list = 10
 
     def update(self):
+        #Desde aqui empeze los cambios, cada x cantidad va creciendo desde el self.index, va a llamar a la posision de la nueva ruta de la imagen
+        self.index+=0.15
         
+        if self.index >= len(self.pics):
+            self.index=0
+        self.image=pygame.image.load(self.pics[int(self.index)])#el int es para que solo pueda tomar valores enteros 
+    
         self.speedy = random.randint(-10,10) 
         self.speedx = random.randint(-10,-5)
         self.rect.x += self.speedx #Generate a asteroid movement
