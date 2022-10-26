@@ -22,11 +22,11 @@ class Asteroid_big(pygame.sprite.Sprite):
         self.change_pic = 10
         self.fps_count = 0
 
-    def load_pic(self,pics):
-        self.pics = {}
+    def load_pic(self):
+        #self.pics = {}
         for picture in self.pics:
-            A = pygame.image.load(f"asteroids/{picture}")
-            pics.append(A)
+            self.image = pygame.image.load(f"asteroids/{picture}")
+            #self.pics.append(self.image)
 
         #TODO: asteroids rotate
 

@@ -112,7 +112,7 @@ class Stage():
 
             #scroll time
             if background_movement:
-                self.scroll -= 0.4
+                self.scroll -= 3
             else:
                 #for restore spacecraft image and position to initial state
                 if self.player.rect.x >= self.screen.get_width():
