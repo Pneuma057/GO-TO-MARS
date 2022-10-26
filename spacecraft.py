@@ -29,15 +29,16 @@ class Spacecraft(pygame.sprite.Sprite):
 
     def auto_move_spacecraft(self):
         self.speed_y = 0
-        self.rect.centerx += 10
+        self.rect.centerx += 5
         # 100 (full size:nave_3)--- 700 (medium size) --- 1400 (small
-        if self.rect.x > 700 and self.current_size == "medium":
+        if self.rect.x > 1100 and self.current_size == "medium":
             # small
-            self.set_spacecraft("spacecraft/nave_pull_1.png", self.colors, self.rect.centerx, self.rect.centery)
+            self.set_spacecraft("spacecraft/nave_32.png", self.colors, self.rect.centerx, self.rect.centery)
             self.current_size = "small"
-        elif self.rect.x > 100 and self.current_size == "full":
+        
+        elif self.rect.x > 900 and self.current_size == "full":
             # change to medium
-            self.set_spacecraft("spacecraft/nave_push_1.png", self.colors, self.rect.centerx, self.rect.centery)
+            self.set_spacecraft("spacecraft/nave_31.png", self.colors, self.rect.centerx, self.rect.centery)
             self.current_size = "medium"
 
 
