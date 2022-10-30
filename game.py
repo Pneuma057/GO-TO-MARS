@@ -31,7 +31,7 @@ if __name__ == "__main__":
     screen = pygame.display.set_mode((screen_size[0],screen_size[1]))
     clock = pygame.time.Clock()
     time = pygame.time.get_ticks()
-    
+
     #sprites setup
     player = Spacecraft(colors['black'], screen_size,)
     

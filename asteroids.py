@@ -70,7 +70,7 @@ class Asteroid_mid(pygame.sprite.Sprite):
     asteroid_list = 10
 
     def update(self):
-        #Desde aqui empeze los cambios, cada x cantidad va creciendo desde el self.index, va a llamar a la posision de la nueva ruta de la imagen
+       
         self.index+=0.15
         
         if self.index >= len(self.pics):
@@ -89,26 +89,5 @@ class Asteroid_mid(pygame.sprite.Sprite):
 
 
 
-    """ super().__init__()
-        self.image = pygame.image.load("asteroids/mid.png")
-        self.image.set_colorkey(black)
-        self.rect = self.image.get_rect()
-        self.rect.x = random.randint(5000,15000)
-        self.rect.y = random.randint(70,730)
-        self.speedy = random.randint(1,100)
-        self.speedx = random.randint(-25,-5)
-    asteroid_list = 10
-
-    def update(self):
-        
-        self.speedy = random.randint(-10,10) 
-        self.speedx = random.randint(-25,-5)
-        self.rect.x += self.speedx #Generate a asteroid movement
-        self.rect.y += self.speedy
-        #reset and new object
-        if self.rect.x < -100 or self.rect.y < 0 or self.rect.y > 800: #reset margins
-            self.rect.y = random.randint(70,730)
-            self.rect.x = random.randint(1400,10000)"""
-            
 
     

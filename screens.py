@@ -14,26 +14,28 @@ class Menu():
         self.font = pygame.font.Font("fonts/space.ttf", 100)
         self.background = pygame.image.load("planets/menu.png")
         self.font2 = pygame.font.Font("fonts/space.ttf",25)
-        self.font3 = pygame.font.Font("fonts/pack.ttf",35)
-        #self.sound1 = sound
-        #sound = pygame.mixer.load("sound/belt.mp3")
-        #TODO: #sounds don't works...
+        self.font3 = pygame.font.Font("fonts/pack.ttf",35)        
         self.clock = clock
         self.spacecraft = spacecraft
         pygame.display.set_caption("START")
        
 
     def run(self):
+        pygame.mixer.music.load("sounds/background.wav")
+        pygame.mixer.music.play(-1)
+
         while True:
             for evento in pygame.event.get():
                 if evento.type == pygame.QUIT:
                     sys.exit()
                 if evento.type == pygame.KEYDOWN:
                     if evento.key == pygame.K_RETURN:
+                        pygame.mixer.music.stop()
                         return
 
             self.screen.blit(self.background, (0, 0))
-            #sound.pygame.mixer.music.play()
+            
+            
             menu = self.font.render("Press Enter", True, black)
             self.screen.blit(menu, (200, 600))
 
@@ -51,7 +53,6 @@ class Menu():
             self.center_x = 430
             self.center_y = 480
             pygame.display.flip()
-            #sound.stop()
             
      
 class Stage():
@@ -77,6 +78,10 @@ class Stage():
         gaming = True
         background_movement = True
 
+        pygame.mixer.music.load("sounds/background.wav")
+        pygame.mixer.music.play(-1)
+
+
         while gaming:
             self.clock.tick(self.fps)
             for event in pygame.event.get():
@@ -100,19 +105,24 @@ class Stage():
             collides = pygame.sprite.spritecollide(self.player,self.list_asteroid_big,True)
             self.xplosion = pygame.image.load("spacecraft/crash.png").convert()
             
+
         #collides
+
+        #crash ) pygame.sprite.groupcollide([spacecraft],asteroid_big,False,False) codigo de clase
+        
             if collides and background_movement:
-                self.xplosion
+                self.player.is_exploding = True
                 self.health -= 1
                 
                 if self.health == 0:
+                    pygame.mixer.music.stop()
                     return self.score, self.health
             health_font = self.font2.render(f"LIVES: {self.health}", True, self.colors['white'])
             self.screen.blit(health_font, (20, 20))
 
             #scroll time
             if background_movement:
-                self.scroll -= 0.4
+                self.scroll -= 0.5
             else:
                 #for restore spacecraft image and position to initial state
                 if self.player.rect.x >= self.screen.get_width():
@@ -121,6 +131,7 @@ class Stage():
                     self.player.set_spacecraft("spacecraft/nave_3.png", self.player.colors, 100, self.screen.get_height() // 2)
                     self.player.auto_movement = False
                     self.player.current_size = "full"
+                    pygame.mixer.music.stop()
                     return self.score, self.health
 
             if abs (self.scroll) > self.screen.get_height():
