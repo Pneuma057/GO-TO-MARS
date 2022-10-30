@@ -28,7 +28,6 @@ class Asteroid_big(pygame.sprite.Sprite):
     asteroid_list = 10
 
     def update(self):
-        #Desde aqui empeze los cambios, cada x cantidad va creciendo desde el self.index, va a llamar a la posision de la nueva ruta de la imagen
         self.index+=0.15
         
         if self.index >= len(self.pics):

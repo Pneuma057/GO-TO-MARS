@@ -21,7 +21,7 @@ class Menu():
        
 
     def run(self):
-        pygame.mixer.music.load("sounds/background.wav")
+        pygame.mixer.music.load("sounds/intro.wav")
         pygame.mixer.music.play(-1)
 
         while True:
@@ -77,8 +77,8 @@ class Stage():
         runned_loops = 0
         gaming = True
         background_movement = True
-
-        pygame.mixer.music.load("sounds/background.wav")
+        
+        pygame.mixer.music.load("sounds/exist.wav")
         pygame.mixer.music.play(-1)
 
 
@@ -103,13 +103,9 @@ class Stage():
             self.list_asteroid_mid.draw(self.screen)
             self.list_asteroid_mid.update()
             collides = pygame.sprite.spritecollide(self.player,self.list_asteroid_big,True)
-            self.xplosion = pygame.image.load("spacecraft/crash.png").convert()
-            
+                        
 
         #collides
-
-        #crash ) pygame.sprite.groupcollide([spacecraft],asteroid_big,False,False) codigo de clase
-        
             if collides and background_movement:
                 self.player.is_exploding = True
                 self.health -= 1
@@ -122,7 +118,7 @@ class Stage():
 
             #scroll time
             if background_movement:
-                self.scroll -= 0.5
+                self.scroll -= 0.3
             else:
                 #for restore spacecraft image and position to initial state
                 if self.player.rect.x >= self.screen.get_width():
@@ -155,6 +151,8 @@ class GameOver():
         self.database = ScoreDatabase()
 
 
+        pygame.mixer.music.load("sounds/die.wav")
+        pygame.mixer.music.play(-1)
 
     def run(self):
         input_box = pygame.Rect(100, 100, 140, 32)

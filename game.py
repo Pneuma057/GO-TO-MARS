@@ -38,7 +38,7 @@ if __name__ == "__main__":
     #inits
     pygame.init()
     pygame.mixer.init()
-    pygame.display.set_caption("Go to Mars")
+    pygame.display.set_caption("Exist")
 
     while True:
         score = 0

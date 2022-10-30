@@ -3,7 +3,6 @@ import pygame
 
 class Spacecraft(pygame.sprite.Sprite):
 
-
     def __init__(self,colors, screen_size):
         super().__init__()
         self.set_spacecraft("spacecraft/nave_3.png", colors, 100, screen_size[1] // 2)
@@ -13,7 +12,7 @@ class Spacecraft(pygame.sprite.Sprite):
         self.current_size = "full"
         self.is_exploding = False
         self.explosion_time = None
-        self.explosion_sound = pygame.mixer.Sound("sounds/explosion.wav")
+        self.explosion_sound = pygame.mixer.Sound("sounds/rock.wav")
         self.last_key_pressed = None
         self.movement_time = None
         self.pressing_time_for_speed_up = 250
@@ -29,7 +28,7 @@ class Spacecraft(pygame.sprite.Sprite):
      
 
     def update(self):
-        # if self.is_exploding and self.exploding_frames == self.current_exploding_frames:
+       
         if self.is_exploding and not self.explosion_time:
             self.explosion_time = pygame.time.get_ticks()
             pygame.mixer.Sound.play(self.explosion_sound)
